@@ -1,0 +1,13 @@
+[{:itonami.blueprint/id "cloud-itonami-isic-4723"
+  :itonami.blueprint/name "Retail Sale of Tobacco Products in Specialized Stores"
+  :itonami.blueprint/isic-rev4 "4723"
+  :itonami.blueprint/domain :retail/specialized-tobacco-stores
+  :itonami.blueprint/license "AGPL-3.0-or-later"
+  :itonami.blueprint/social-impact [:age-verification-integrity :regulatory-compliance :local-economy]
+  :itonami.blueprint/governor :tobacco-retail-governor
+  :itonami.blueprint/robotics true
+  :itonami.blueprint/required-technologies [:robotics :identity :forms :dmn :bpmn :audit-ledger :retail]
+  :itonami.blueprint/optional-technologies []
+  :itonami.blueprint/status :public-oss
+  :itonami.blueprint/maturity :implemented
+  :db/id -1}]
