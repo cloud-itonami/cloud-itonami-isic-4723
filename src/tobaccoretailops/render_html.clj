@@ -30,7 +30,7 @@
   in-memory `:audit` channel, so the store-status column below never
   branches on them; they appear only in the request timeline, which is
   read from the graph's returned `:audit` state."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [langgraph.graph :as g]
             [tobaccoretailops.advisor :as advisor]
             [tobaccoretailops.governor :as governor]
