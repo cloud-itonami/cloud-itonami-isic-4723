@@ -1,0 +1,33 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:dev:physics` runs it.
+;;
+;; README: a coordination actor for specialized tobacco stores
+;; (tobacconists, cigar lounges, vape shops; ISIC 4723); in-store physical
+;; work is done by robots under kotoba-lang/robotics. The physical work: a
+;; small arm placing cartons on the behind-the-counter fixture, and a stock
+;; cart moving from the back room past customers, which must stop short.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isic-4723"
+ :cases
+ [{:id :place-carton-behind-counter
+   :kind :manipulator
+   :procedure "small arm behind the counter lifts cartons or a master case from the stock cart onto the upper tier of the tobacco fixture"
+   :params {:l1-m 0.40 :l2-m 0.35 :m1-kg 3.0 :m2-kg 2.0
+            :from [0.45 0.10] :to [0.15 0.60] :duration-s 1.5 :steps 400}
+   :sweep {:param :payload-kg :values [0.25 1.0 3.0 6.0 12.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 60.0 :basis "estimate: continuous shoulder torque of a light collaborative arm (~5 kg class)"}
+   :boundary {:lo 0.05 :hi 30.0}}
+  {:id :stock-cart-past-customers
+   :kind :transport
+   :procedure "stock cart brings a restock from the back room past the customer area, braking at 1.0 m/s2 when a customer steps in front; cruise speed is swept"
+   :params {:mass-kg 60.0 :payload-kg 25.0 :distance-m 15.0 :a-max-mps2 0.4 :brake-decel-mps2 1.0
+            :drive-force-n 150.0 :crr 0.015 :cog-height-m 0.35 :payload-cog-height-m 0.60
+            :support-half-length-m 0.30 :max-time-s 600.0}
+   :sweep {:param :v-max-mps :values [0.4 0.6 0.8 1.0 1.2]}
+   :quantity :stopping-distance-m
+   :limit {:max 0.3 :basis "estimate: the gap kept to a customer who steps in front of the cart in a small shop"}
+   :boundary {:lo 0.2 :hi 2.0}}]}
