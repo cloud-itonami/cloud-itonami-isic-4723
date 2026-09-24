@@ -2,7 +2,7 @@
   "Pure unit tests of `tobaccoretailops.governor/check` against hand-built
   proposals -- the fast, focused complement to `governor-contract-test`'s
   full-graph integration coverage."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [tobaccoretailops.advisor :as adv]
             [tobaccoretailops.governor :as gov]
             [tobaccoretailops.store :as store]))
