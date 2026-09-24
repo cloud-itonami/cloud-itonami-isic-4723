@@ -30,7 +30,7 @@
   in-memory `:audit` channel, so the store-status column below never
   branches on them; they appear only in the request timeline, which is
   read from the graph's returned `:audit` state."
-  (:require [kotoba.lang.text :as str]
+  (:require [kotoba.io :as kio] [kotoba.lang.text :as str]
             [langgraph.graph :as g]
             [tobaccoretailops.advisor :as advisor]
             [tobaccoretailops.governor :as governor]
@@ -354,8 +354,8 @@
 (defn -main [& args]
   (let [out    (or (first args) "docs/samples/operator-console.html")
         result (run-demo!)
-        f      (java.io.File. ^String out)]
-    (when-let [p (.getParentFile f)] (.mkdirs p))
+        f      (kio/file ^String out)]
+    (when-let [p (kio/parent-file f)] (kio/mkdirs p))
     (spit f (render result))
     (println "wrote" out
              "--" (count (store/ledger (:db result))) "ledger facts,"
