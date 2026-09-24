@@ -1,6 +1,6 @@
 (ns tobaccoretailops.store-contract-test
   "Contract tests for `tobaccoretailops.store/Store` protocol."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [tobaccoretailops.store :as store]))
 
 (deftest mem-store-store-lookup
