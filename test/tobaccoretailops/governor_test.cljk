@@ -139,7 +139,7 @@
                    (pr-str (select-keys proposal [:rationale :summary])))))))))
 
 ;; ----------------------------------------------------------------------
-;; Domain-specific invariant (see CLAUDE.md / ADR-2607121000): the closed
+;; Domain-specific invariant (see AGENTS.md / ADR-2607121000): the closed
 ;; op allowlist must NEVER include any op that directly finalizes an
 ;; age-verification override -- always a hard permanent block or an
 ;; always-escalate op, never auto-commit-eligible.
